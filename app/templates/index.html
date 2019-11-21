@@ -5,10 +5,11 @@ Home page
 {% endblock %}
 
 {% block content %}
-<p>Welcome to the home page {{ current_user.username }}</p>
-<p>Here are your todos</p>
-{% for todo in Todos %}
-<p>{{ todo.body }}</p>
-{% endfor %}
-
+    {% if current_user.is_anonymous %}
+        <a href="{{ url_for('register') }}">Click here to register</a>
+        <a href="{{ url_for('login') }}">Login</a>
+    {% else %}
+        <a href="{{ url_for('todo') }}">Todos</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% endif %}
 {% endblock %}

@@ -1,16 +1,15 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.urls import url_parse
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, TodoForm
 from app import app, db
-from app.models import User
+from app.models import User, Todo
 
 
 @app.route('/')
 @app.route('/index')
-@login_required
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title='Home Page')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -28,10 +27,10 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
-        return redirect(url_for('index'))
     return render_template('login.html', title='Sign in', form=form)
 
 
+@login_required
 @app.route('/logout')
 def logout():
     logout_user()
@@ -47,7 +46,23 @@ def register():
         user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
+        db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now registered')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+
+@login_required
+@app.route('/todo', methods=['GET', 'POST'])
+def todo():
+    if current_user.is_authenticated:
+        form = TodoForm()
+        todos = current_user.todos.all()
+        if form.validate_on_submit():
+            new_todo = Todo(body=form.todo.data)
+            db.session.add(new_todo)
+            db.session.add(new_todo)
+            db.session.commit()
+            flash('Todo added')
+        return render_template('todo.html', title='Your todos', form=form, todos=todos)

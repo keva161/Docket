@@ -1,0 +1,25 @@
+{%  extends "base.html" %}
+
+{% block title %}
+Home page
+{% endblock %}
+
+{% block content %}
+<p>Welcome to the home page {{ current_user.username }}</p>
+<p>What do you need to do today?</p>
+<p>
+    <h1>New Todo</h1>
+    <form action="" method="post">
+        {{ form.todo.label }}<br>
+        {{ form.todo(size=32) }}<br>
+        {% for error in form.todo.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </form>
+</p>
+<p>{{ form.submit }}</p>
+<p>Here are your todos</p>
+{% for todo in todos %}
+<p>{{ todo.body }}</p>
+{% endfor %}
+{% endblock %}
