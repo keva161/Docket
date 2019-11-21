@@ -1,0 +1,13 @@
+/.idea/.gitignore
+/migrations/versions/3140b9cb65bf_.py
+/migrations/alembic.ini
+/app.db
+/migrations/env.py
+/migrations/versions/f34c020379e0_.py
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/Py-todo.iml
+/migrations/README
+/migrations/script.py.mako
+/.idea/vcs.xml
