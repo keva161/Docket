@@ -5,5 +5,10 @@ Home page
 {% endblock %}
 
 {% block content %}
-<p>Welcome to the home page</p>
+<p>Welcome to the home page {{ current_user.username }}</p>
+<p>Here are your todos</p>
+{% for todo in Todos %}
+<p>{{ todo.body }}</p>
+{% endfor %}
+
 {% endblock %}

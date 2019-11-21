@@ -9,6 +9,12 @@ verify_ssl = true
 flask = "*"
 flask-sqlalchemy = "*"
 flask-wtf = "*"
+flask-sqlalchemypipenv = "*"
+install = "*"
+flask-migrate = "*"
+flask-login = "*"
+itsdangerous = "*"
+config = "*"
 
 [requires]
 python_version = "3.8"
