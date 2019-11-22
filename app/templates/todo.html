@@ -1,14 +1,17 @@
 {%  extends "base.html" %}
 
-{% block title %}
-Home page
-{% endblock %}
 
 {% block content %}
-<p>What do you need to do today?</p>
-{% for error in form.todo.errors %}
-    <span style="color: red;">[{{ error }}]</span>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+    {{ message }}
+</div>
 {% endfor %}
+{% endif %}
+{% endwith %}
+<p>What do you need to do today?</p>
 <h1>New Todo</h1>
 <form action="" method="post">
 {{ form.hidden_tag() }}
@@ -19,7 +22,9 @@ Home page
     </form>
 </p>
 <p>Here are your todos</p>
-{% for todo in todos %}
-    <p>{{ todo.body }}</p>
-{% endfor %}
+<div id="todoList">
+    {% for todo in todos %}
+        <div id="todo-item"><p>{{ todo.body }}</p></div>
+    {% endfor %}
+</div>
 {% endblock %}

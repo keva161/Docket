@@ -9,7 +9,7 @@ from app.models import User, Todo
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', title='Home Page')
+    return render_template('index.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -27,7 +27,7 @@ def login():
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
-    return render_template('login.html', title='Sign in', form=form)
+    return render_template('login.html', form=form)
 
 
 @login_required
@@ -49,13 +49,14 @@ def register():
         db.session.commit()
         flash('Congratulations, you are now registered')
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('register.html', form=form)
 
 
 @login_required
 @app.route('/todo', methods=['GET', 'POST'])
 def todo():
     if current_user.is_authenticated:
+        flash('Welcome ' + str(current_user.username))
         form = TodoForm()
         todos = current_user.todos.order_by(Todo.timestamp.desc()).all()
         if form.validate_on_submit():
@@ -64,4 +65,6 @@ def todo():
             db.session.commit()
             flash('Todo added')
             return redirect(url_for('todo'))
-        return render_template('todo.html', title='Your todos', form=form, todos=todos)
+        return render_template('todo.html', form=form, todos=todos)
+    flash('You first need to login or register')
+    return redirect(url_for('index'))
