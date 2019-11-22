@@ -46,7 +46,6 @@ def register():
         user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
-        db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now registered')
         return redirect(url_for('login'))
@@ -58,11 +57,11 @@ def register():
 def todo():
     if current_user.is_authenticated:
         form = TodoForm()
-        todos = current_user.todos.all()
+        todos = current_user.todos.order_by(Todo.timestamp.desc()).all()
         if form.validate_on_submit():
-            new_todo = Todo(body=form.todo.data)
-            db.session.add(new_todo)
+            new_todo = Todo(body=form.todo.data, owner=current_user)
             db.session.add(new_todo)
             db.session.commit()
             flash('Todo added')
+            return redirect(url_for('todo'))
         return render_template('todo.html', title='Your todos', form=form, todos=todos)

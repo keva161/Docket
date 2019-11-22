@@ -31,5 +31,5 @@ class RegistrationForm(FlaskForm):
 
 
 class TodoForm(FlaskForm):
-    todo = StringField('New Todo', [DataRequired()])
+    todo = StringField('New Todo', validators=[DataRequired()])
     submit = SubmitField('Add')
