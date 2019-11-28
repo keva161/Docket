@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-8 offset-md-2">
+<div class="row justify-content-md-center">
+    <div class="col-md-auto">
         <div class="page-header">
             <h1>Sign in</h1>
             <small>Enter your details below to gain access to your todo list</small>
@@ -19,26 +19,26 @@
             {% endfor %}
             {% endif %}
             {% endwith %}
-                {{ form.hidden_tag() }}
             {% for error in form.username.errors %}
             <div id="error_message"><span style="color: red;">{{ error }}</span></div>
             {% endfor %}
             <div class="form-group">
-                {{ form.username.label }}<br>
+                {{ form.username.label }}
                 {{ form.username(class_="form-control") }}
             </div>
             <div class="form-group">
                 {% for error in form.password.errors %}
                 <div id="error"><span style="color: red;">{{ error }}</span></div>
                 {% endfor %}
-                {{ form.password.label }}<br>
+                {{ form.password.label }}
                 {{ form.password(class_="form-control") }}
             </div>
             <div class="form-group">
                 {{ form.remember_me() }} {{ form.remember_me.label }}
             </div>
-                {{ form.submit(class_="btn btn-primary") }} </p>
+                {{ form.submit(class_="btn btn-primary") }}
         </form>
     </div>
 </div>
+</body>
 {% endblock %}

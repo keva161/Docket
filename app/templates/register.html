@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-8 offset-md-2">
+<div class="row justify-content-md-center">
+    <div class="col-md-auto">
         <div class="page-header">
             <h1>Registration</h1>
             <small>To gain access to the application. Please enter your details below.</small>
@@ -12,11 +12,13 @@
             {{ form.hidden_tag() }}
             {% with messages = get_flashed_messages() %}
             {% if messages %}
-            <div class="alert alert-danger alert-dismissible" role="alert">
+            {% for message in messages %}
+
+            <div class="alert alert-warning alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                {% for message in messages %}
                 {{ message }}
             </div>
+
             {% endfor %}
             {% endif %}
             {% endwith %}

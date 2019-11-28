@@ -1,5 +1,8 @@
 {%  extends "base.html" %}
 
+{% block script %}
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+{% endblock %}
 
 {% block content %}
 {% with messages = get_flashed_messages() %}
@@ -11,20 +14,30 @@
 {% endfor %}
 {% endif %}
 {% endwith %}
-<p>What do you need to do today?</p>
-<h1>New Todo</h1>
-<form action="" method="post">
-{{ form.hidden_tag() }}
-<p>
-    {{ form.todo.label }}<br>
-    {{ form.todo(size=32) }}<br>
-    <p>{{ form.submit }}</p>
-    </form>
-</p>
-<p>Here are your todos</p>
-<div id="todoList">
-    {% for todo in todos %}
-        <div id="todo-item"><p>{{ todo.body }}</p></div>
-    {% endfor %}
+<div class="row justify-content-md-center">
+    <div class="col-md-auto">
+        <h1>What needs to be done today?</h1>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col-md-auto">
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.todo (id="todoInput") }}
+                <button class="btn btn-primary btn-sm updateButton">Add todo</button>
+            </div>
+        </form>
+            <div id="todoList">
+                <ul class="list-group">
+                {% for todo in todos %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div id="todoItem">{{ todo.body }}</div>
+                        <button type="button" class="close" aria-label="Close"><span id="delete" class="{{ todo.id }}" aria-hidden="true">&times;</span></button>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
 </div>
 {% endblock %}

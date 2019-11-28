@@ -1,4 +1,6 @@
-from flask import render_template, flash, redirect, url_for, request
+import json
+
+from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.urls import url_parse
 from app.forms import LoginForm, RegistrationForm, TodoForm
@@ -53,18 +55,28 @@ def register():
 
 
 @login_required
-@app.route('/todo', methods=['GET', 'POST'])
+@app.route('/todo')
 def todo():
-    if current_user.is_authenticated:
-        flash('Welcome ' + str(current_user.username))
-        form = TodoForm()
-        todos = current_user.todos.order_by(Todo.timestamp.desc()).all()
-        if form.validate_on_submit():
-            new_todo = Todo(body=form.todo.data, owner=current_user)
-            db.session.add(new_todo)
-            db.session.commit()
-            flash('Todo added')
-            return redirect(url_for('todo'))
-        return render_template('todo.html', form=form, todos=todos)
-    flash('You first need to login or register')
-    return redirect(url_for('index'))
+    form = TodoForm()
+    todos = current_user.todos.order_by(Todo.timestamp.desc()).all()
+    return render_template('todo.html', form=form, todos=todos)
+
+
+@login_required
+@app.route('/newtodo', methods=['POST'])
+def update():
+    form = TodoForm()
+    new_todo = Todo(body=form.todo.data, owner=current_user)
+    db.session.add(new_todo)
+    db.session.commit()
+    todos = current_user.todos.order_by(Todo.timestamp.desc()).all()
+    return render_template('todolist.html', todos=todos)
+
+@login_required
+@app.route('/delete', methods=['POST'])
+def delete():
+    deleteid = request.form['id']
+    Todo.query.filter_by(id=deleteid).delete()
+    db.session.commit()
+    todos = current_user.todos.order_by(Todo.timestamp.desc()).all()
+    return render_template('todolist.html', todos=todos)

@@ -15,6 +15,7 @@ flask-migrate = "*"
 flask-login = "*"
 itsdangerous = "*"
 config = "*"
+sqlalchemy-serializer = "*"
 
 [requires]
 python_version = "3.8"
