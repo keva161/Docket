@@ -7,7 +7,7 @@ $(document).ready(function(){
         console.log(deleteItem);
 
         req = $.ajax({
-            url: '/delete',
+            url: '/deletetodo',
             type: 'POST',
             data: { id : deleteItem }            
         });
@@ -22,7 +22,9 @@ $(document).ready(function(){
         
        let todo = $('#todoInput').val();
 
-        req = $.ajax({
+       if (todo != '')
+       
+       req = $.ajax({
             url: '/newtodo',
             type: 'POST',
             data: { todo : todo }

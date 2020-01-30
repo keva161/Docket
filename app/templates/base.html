@@ -9,7 +9,7 @@
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <span class="navbar-brand">Todo</span>
+        <span class="navbar-brand">Docket</span>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -19,9 +19,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('login') }}">Login</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('todo') }}">Todos</a>
+                    <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('todo') }}">Todo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
@@ -30,11 +36,13 @@
             </ul>
         </div>
     </nav>
-    <hr>
     <div class="jumbotron">
-        <div class="container">
+        <div class="container text-center">
             {% block content %} {% endblock %}
         </div>
+    </div>
+    <div class="footer text-center">
+        <p>Created by Kevin Tuck || Download the code here || <a href="http://kevintuck.co.uk/">Visit my website</a> || Run into problems? Connect with me on <a href="http://twitter.com/keva161">Twitter</a> </p>
     </div>
     </body>
 </html>

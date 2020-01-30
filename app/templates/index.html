@@ -11,10 +11,30 @@
 {% endfor %}
 {% endif %}
 {% endwith %}
-<div class="row">
-    Content Content Content
-    <div class="registration col-md-8 offset-md-2">
-        <span>Don't have an account? Click <a href="{{ url_for('register') }}">here</a> to register.</span>
-    </div>
+<div class="logo">
+    <img src="/static/img/logo.png">
 </div>
+<div class="intro-text">
+    <h4>Docket is fully fledged Todo web application for you to practise your test automation skills.</h4>
+</div>
+<hr>
+<div class="table-responsive-xl">
+<table class="table">
+  <tbody>
+    <tr>
+        <td class="col-sm-3"><p><strong>C</strong>reate new users and todo items <img src="/static/img/checked-box_resized.png"></p></td>
+    </tr>
+    <tr>
+        <td class="col-sm-3"><p><strong>R</strong>ead your todo's via the web application and API protocol <img src="/static/img/checked-box_resized.png"></p></td>
+    </tr>
+    <tr>
+        <td class="col-sm-8"><p><strong>U</strong>pdate your user details <img src="/static/img/checked-box_resized.png"></p></td>
+    </tr>
+    <tr>
+        <td class="col-sm-8"><p><strong>D</strong>elete todo's and account from the database <img src="/static/img/checked-box_resized.png"></p></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 {% endblock %}

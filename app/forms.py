@@ -29,7 +29,6 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
-
 class TodoForm(FlaskForm):
     todo = StringField('New Todo', validators=[DataRequired()])
     submit = SubmitField('Add')
