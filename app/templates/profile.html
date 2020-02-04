@@ -11,41 +11,27 @@
 {% endfor %}
 {% endif %}
 {% endwith %}
-<div class="row">
-    <div id="container">
+<div class="row justify-content-md-center">
+    <div class="col-md-auto">
         <div id="profile_container">
-            <form>
-                <div class="form-group">
-                    <label>Username:</label>
-                    <p>{{ User.username }}</p>
-                    <label>Email:</label>
-                    <p>{{ User.email }}</p>
-                    <label>API Token:</label>
-                    <p>{{ User.api_token }}</p>
-                </div>
-
-            </form>
             <table class="table">
-
-  <tbody>
-    <tr>
-      <th scope="row">Username</th>
-      <td>{{ User.username }}</td>
-    </tr>
-    <tr>
-      <th scope="row">Email</th>
-      <td>{{ User.email }}</td>
-    </tr>
-    <tr>
-      <th scope="row">Password</th>
-      <td>{{ User.password }}</td>
-    </tr>
-  <tr>
-      <th scope="row">API Token</th>
-      <td>{{ User.api_token }}</td>
-    </tr>
-  </tbody>
-</table>
+                <tbody>
+                <tr>
+                    <th scope="row">Username</th>
+                    <td>{{ User.username }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Email</th>
+                    <td>{{ User.email }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">API Token</th>
+                    <td>{{ User.api_token }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <p>Your API token can be used by placing <code>?token=...</code>in your header.</p>
+            <p>Full API documentation can be read <a href="/api/documentation">here</a>.</p>
         </div>
     </div>
 </div>

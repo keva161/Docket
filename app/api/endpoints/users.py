@@ -4,20 +4,22 @@ from app.models import User
 from app.api.models import UserModel
 from app.api.auth import token_required
 from flask import jsonify, request
-import uuid
 
 UserNS = Namespace('Users', description='User related operations')
 
 @UserNS.route('/')
 class Users(Resource):
-    @token_required
     def get(self):
         """Returns list of registered users."""
         output = []
         users = User.query.all()
-        for user in users:
-            output.append({'username': user.username, 'email': user.email})
-        return jsonify(output)
+
+        if not output:
+            return jsonify({'message' : 'There are no registered users'})
+        else:
+            for user in users:
+                output.append({'username': user.username, 'email': user.email})
+            return jsonify(output)
 
     @token_required
     def delete(self):

@@ -15,8 +15,11 @@
 {% endif %}
 {% endwith %}
 <div class="row justify-content-md-center">
-    <div class="col-md-auto">
-        <h1>Hello {{ current_user.username }}</h1>
+    <div class="welcome col-md-auto">
+        <strong><h1>Hello {{ current_user.username }}</h1></strong>
+        <br>
+        <h2>What do you need to do today?</h2>
+        <br>
     </div>
 </div>
 <div class="row justify-content-md-center">

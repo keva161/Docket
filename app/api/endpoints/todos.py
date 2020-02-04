@@ -7,8 +7,10 @@ from flask import jsonify, request
 
 TodosNS = Namespace('Todo', description='Todo related operations')
 
+
 @TodosNS.route('/')
 class Todos(Resource):
+
     @token_required
     def get(self):
         """Returns all the todos for a user associated with the API token."""
@@ -22,7 +24,7 @@ class Todos(Resource):
                 output.append({'id': todo.id, 'body': todo.body, 'created': todo.timestamp})
             return jsonify(output)
         except:
-            return{'message': 'Invalid user'}
+            return {'message': 'Invalid user'}
 
     @TodosNS.expect(TodoModel)
     @token_required
@@ -33,15 +35,16 @@ class Todos(Resource):
         user = User.query.filter_by(api_token=token).first()
 
         if not user:
-            return jsonify({'message':'Invalid API token'})
+            return jsonify({'message': 'Invalid API token'})
         else:
-             try:
-                 new_todo = Todo(body=data['Body'], owner=user)
-                 db.session.add(new_todo)
-                 db.session.commit()
-                 return jsonify({'message': 'Todo added!'})
-             except:
-                 return jsonify({'message': 'An error occurred. Please try again'})
+            try:
+                new_todo = Todo(body=data['Body'], owner=user)
+                db.session.add(new_todo)
+                db.session.commit()
+                return jsonify({'message': 'Todo added!'})
+            except:
+                return jsonify({'message': 'An error occurred. Please try again'})
+
 
 @TodosNS.route('/<string:todo_id>')
 class Todos(Resource):

@@ -1,15 +1,15 @@
+from app import *
+from manage import app
 from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.urls import url_parse
 from app.forms import LoginForm, RegistrationForm, TodoForm
-from app import app, db
 from app.models import User, Todo
 import uuid
 
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -87,102 +87,3 @@ def profile():
     if current_user.is_authenticated:
         return render_template('profile.html', User=current_user)
     return redirect(url_for('index'))
-
-# @app.route('/api/user', methods=['GET'])
-# def get_one_user():
-#     key = request.args.get('key')
-#     user = models.py.query.filter_by(api_token=key).first()
-#
-#     if not user:
-#         return jsonify({'message':'No user found'})
-#     else:
-#         output = []
-#         user_data = {'username': user.username, 'email': user.email}
-#         return jsonify({'user': user_data})
-#
-# @app.route('/api/user', methods=['POST'])
-# def create_user():
-#     data = request.get_json()
-#
-#     if not data:
-#         return jsonify({'message':'Please enter some user data'})
-#     else:
-#         user = models.py(api_token=str(uuid.uuid4()), username=data['username'], email=data['email'])
-#         user.set_password(data['password'])
-#         db.session.add(user)
-#         db.session.commit()
-#         return jsonify({'message': 'New user created! : ' + user.api_token})
-#
-#
-# @app.route('/api/user/all', methods=['GET'])
-# def get_all_users():
-#     key = request.args.get('key')
-#     valid_user = models.py.query.filter_by(api_token=key).first()
-#
-#     if not valid_user:
-#         return jsonify({'message':'Missing, or invalid API auth.py'})
-#     else:
-#         users = models.py.query.all()
-#         output = []
-#
-#         for user in users:
-#             output.append({'username': user.username, 'email': user.email})
-#         return jsonify(output)
-#
-# @app.route('/api/user', methods=['DELETE'])
-# def delete_current_user():
-#     key = request.args.get('key')
-#     user = models.py.query.filter_by(api_token=key).first()
-#
-#     if not user:
-#         return jsonify({'message':'No user found'})
-#     else:
-#         models.py.query.filter_by(api_token=key).delete()
-#         db.session.commit()
-#         return jsonify({'message': 'Current user deleted'})
-#
-# @app.route('/api/todo', methods=['GET'])
-# def get_todo():
-#     key = request.args.get('key')
-#     user = models.py.query.filter_by(api_token=key).first()
-#
-#     if not user:
-#         return jsonify({'message':'Missing, or invalid API auth.py'})
-#     else:
-#         todos = Todo.query.filter_by(user_id=user.id).order_by(Todo.timestamp.desc()).all()
-#         output=[]
-#
-#         for todo in todos:
-#             output.append({'id': todo.id, 'body': todo.body, 'created': todo.timestamp})
-#         return jsonify(output)
-#
-# @app.route('/api/todo', methods=['POST'])
-# def add_todo():
-#     key = request.args.get('key')
-#     data = request.get_json()
-#     user = models.py.query.filter_by(api_token=key).first()
-#
-#     if not user:
-#         return jsonify({'message':'Missing, or invalid API auth.py'})
-#     else:
-#         new_todo = Todo(body=data['body'], owner=user)
-#         db.session.add(new_todo)
-#         db.session.commit()
-#         return jsonify({'message': 'Todo added!'})
-#
-# @app.route('/api/todo/<todo_id>', methods=['POST'])
-# def delete_todo(todo_id):
-#     key = request.args.get('key')
-#     id = todo_id
-#     user = models.py.query.filter_by(api_token=key).first()
-#
-#     if not user:
-#         return jsonify({'message':'Missing, or invalid API auth.py'})
-#     else:
-#         if not todo_id:
-#             return jsonify({'message': 'Missing, or invalid Todo id'})
-#         else:
-#             Todo.query.filter_by(id=id).delete()
-#             db.session.commit()
-#             return jsonify({'message': 'Todo deleted!'})
-

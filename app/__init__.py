@@ -1,32 +1,33 @@
-from flask import Flask, Blueprint
-from flask_restplus import Api
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from flask import Flask
 from flask_login import LoginManager
-from config import Config
-from app import api
+from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+db = SQLAlchemy()
 
-blueprint = Blueprint('api', __name__, url_prefix='/api')
+login = LoginManager()
 
-api = Api(blueprint, doc='/documentation', version='1.0', title='Docket API',
-    description='API for Docket. Create users and todo items through a REST API.',
-)
+def create_app():
+    app = Flask(__name__)
 
-app.register_blueprint(blueprint)
-app.config.from_object(Config)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-login = LoginManager(app)
-login.login_view = 'login'
+    from config import Config
 
-from app.api.endpoints.todos import TodosNS
-from app.api.endpoints.users import UserNS
-from app.api.endpoints.register import RegisterNS
-from app import routes, models
-from app.api.endpoints import users, todos, register
+    app.config.from_object(Config)
 
-api.add_namespace(TodosNS)
-api.add_namespace(UserNS)
-api.add_namespace(RegisterNS)
+    db.init_app(app)
+
+    login.init_app(app)
+    login.login_view = 'login'
+
+    from app.api import api, blueprint
+    from app.api.endpoints.todos import TodosNS
+    from app.api.endpoints.users import UserNS
+    from app.api.endpoints.register import RegisterNS
+    from app.api.endpoints import users, todos, register
+
+    app.register_blueprint(blueprint)
+
+    api.add_namespace(TodosNS)
+    api.add_namespace(UserNS)
+    api.add_namespace(RegisterNS)
+
+    return app

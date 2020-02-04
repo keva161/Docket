@@ -21,6 +21,9 @@ autodoc = "*"
 flask-api = "*"
 flask-autodoc = "*"
 flask-restful-swagger = "*"
+flask-limiter = "*"
+flask-script = "*"
+apscheduler = "*"
 
 [requires]
 python_version = "3.8"
