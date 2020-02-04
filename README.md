@@ -1,4 +1,4 @@
-## Py-todo
+## Docket
 
 This is a super simple TODO app written in flask which used a login feature and will expose a REST API.
 
