@@ -22,7 +22,7 @@ def clear_data():
 @manager.command
 def run():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(clear_data, trigger='interval', minutes=1)
+    scheduler.add_job(clear_data, trigger='interval', hours=1)
     scheduler.start()
     app.run(debug=True)
 
