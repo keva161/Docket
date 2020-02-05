@@ -18,13 +18,15 @@ def create_app():
     login.init_app(app)
     login.login_view = 'login'
 
-    from app.api import api, blueprint
+    from app.api import api, blueprint, limiter
+    from app.api.endpoints import users, todos, register
     from app.api.endpoints.todos import TodosNS
     from app.api.endpoints.users import UserNS
     from app.api.endpoints.register import RegisterNS
-    from app.api.endpoints import users, todos, register
 
     app.register_blueprint(blueprint)
+
+    limiter.init_app(app)
 
     api.add_namespace(TodosNS)
     api.add_namespace(UserNS)
