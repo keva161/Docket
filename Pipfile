@@ -24,6 +24,7 @@ flask-restful-swagger = "*"
 flask-limiter = "*"
 flask-script = "*"
 apscheduler = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
