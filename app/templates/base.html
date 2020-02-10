@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        {% block title %}
+        {% endblock %}
         {% block script %}
         {% endblock %}
     </head>
@@ -42,7 +44,7 @@
         </div>
     </div>
     <div class="footer text-center">
-        <p>Created by Kevin Tuck | Download the <a href="https://github.com/keva161/Docket">here</a> | <a href="http://kevintuck.co.uk/">Visit my website</a> | Run into problems? Connect with me on <a href="http://twitter.com/keva161">Twitter</a>.</p>
+        <p>Created by Kevin Tuck | Download the code <a href="https://github.com/keva161/Docket">here</a> | <a href="http://kevintuck.co.uk/">Visit my website</a> | Run into problems? Connect with me on <a href="http://twitter.com/keva161">Twitter</a>.</p>
     </div>
     </body>
 </html>

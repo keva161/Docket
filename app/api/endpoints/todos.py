@@ -16,13 +16,16 @@ class Todos(Resource):
         """Returns all the todos for a user associated with the API token."""
         token = request.headers['Token']
         user = User.query.filter_by(api_token=token).first()
-
         try:
             todos = Todo.query.filter_by(user_id=user.id).order_by(Todo.timestamp.desc()).all()
             output = []
             for todo in todos:
                 output.append({'id': todo.id, 'body': todo.body, 'created': todo.timestamp})
-            return jsonify(output)
+                print("Delivering a users todo items")
+            if len(output) < 1:
+                return jsonify({'message' : 'There are no todo items currently waiting to be done!'})
+            else:
+                return jsonify(output)
         except:
             return {'message': 'Invalid user'}
 
@@ -38,6 +41,7 @@ class Todos(Resource):
             return jsonify({'message': 'Invalid API token'})
         else:
             try:
+                print("Creating a new todo item")
                 new_todo = Todo(body=data['Body'], owner=user)
                 db.session.add(new_todo)
                 db.session.commit()
@@ -54,6 +58,7 @@ class Todos(Resource):
         """Deletes a specified todo item on the users list of todos."""
         token = request.headers['Token']
         try:
+            print("Deleting a todo item")
             user = User.query.filter_by(api_token=token).first()
             Todo.query.filter_by(user_id=user.id).filter_by(id=todo_id).delete()
             db.session.commit()

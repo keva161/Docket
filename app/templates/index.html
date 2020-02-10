@@ -1,4 +1,7 @@
 {%  extends "base.html" %}
+{% block title %}
+<title>Docket - Simple Todo application for you to practise your API testing</title>
+{% endblock %}
 {% block navbar %}
 {% endblock %}
 {% block content %}
@@ -37,10 +40,11 @@
             </tbody>
         </table>
     </div>
-            <div class="cta">
-                <p>The API is limited to 50 API calls per day. But if you need an extension, or encounter issues with the application.</p>
-               <p>Please contact me via Twitter (<a href="http://twitter.com/keva161">@Keva161</a>)</p>
-        </div>
+    <div class="cta">
+        <h5>Example Python API tests can be downloaded <a href="https://github.com/keva161/DocketTests">here</a></h5>
+        <br>
+        <p>PThe API is limited to 50 API calls per day and the application resets itself every 15 minutes. Please contact me if you need an extension. There are intended bugs, but feel free to let me know if you are having issues!</a>)</p>
+    </div>
 </div>
 
 {% endblock %}
