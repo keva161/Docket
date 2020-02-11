@@ -1,5 +1,4 @@
-from app import *
-from app import app
+from manage import app
 from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.urls import url_parse

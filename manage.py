@@ -7,9 +7,8 @@ app.app_context().push()
 
 manager = Manager(app)
 
-
 from app.routes import *
-from app.models import *
+from app.models import User, Todo
 
 def clear_data():
     with app.app_context():
