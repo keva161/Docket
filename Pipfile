@@ -24,6 +24,7 @@ flask-restful-swagger = "*"
 flask-limiter = "*"
 flask-script = "*"
 apscheduler = "*"
+werkzeug = "~=0.16.1"
 gunicorn = "*"
 
 [requires]

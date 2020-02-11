@@ -23,7 +23,7 @@ def run():
     scheduler = BackgroundScheduler()
     scheduler.add_job(clear_data, trigger='interval', minutes=15)
     scheduler.start()
-    app.run(debug=True)
+    app.run()
 
 if __name__ == '__main__':
     clear_data()

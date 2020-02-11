@@ -32,6 +32,8 @@ Have a custom solution that you would like to created automated tests for? reach
 I'm a freelance software tester based in the southwest of the UK. Please feel free to check out my blog on which I write articles about software testing. Or connect with me via email or Twitter.
 
 Website: [http://kevintuck.co.uk](http://kevintuck.co.uk)
+
 Email: [kevin@kevintuck.co.uk](mailto:kevin@kevintuck.co.uk)
+
 Twitter: [http://twitter.com/keva161](http://twitter.com/keva161)
 
