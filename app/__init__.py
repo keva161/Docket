@@ -10,7 +10,6 @@ login = LoginManager()
 def create_app():
     app = Flask(__name__)
     migrate = Migrate(app, db)
-
     from config import Config
 
     app.config.from_object(Config)

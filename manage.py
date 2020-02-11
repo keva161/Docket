@@ -19,6 +19,7 @@ def clear_data():
 
 @manager.command
 def run():
+    db.create_all()
     scheduler = BackgroundScheduler()
     scheduler.add_job(clear_data, trigger='interval', minutes=15)
     scheduler.start()
