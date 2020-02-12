@@ -13,8 +13,9 @@ Note: Your specific steps may differ depending on your systems operating system.
 3. Clone this repo, or down it [here](https://github.com/keva161/Docket/archive/master.zip).
 4. After unzipping the downloaded archive. Navigate to where you downloaded it and open up a terminal in the location.
 5. Type: `pipenv install` to install the required dependencies.
-6. Type `python manage.py run` to start the server.
-7. Navigate to 127.0.0.1:5000 to find the application running.
+6. Create the database required by typing `flask db init`, `flask db migrate` & `flask db upgrade`.
+7. Type `python manage.py run` to start the server.
+8. Navigate to `127.0.0.1:5000` to find the application running.
 
 ## Example API Tests
 
