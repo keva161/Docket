@@ -1,15 +1,11 @@
 from apscheduler.schedulers.background import BackgroundScheduler
 from app import create_app, db
+from app.models import Todo, User
 from flask_script import Manager
 
 app = create_app()
-app.app_context().push()
 
 manager = Manager(app)
-
-
-from app.routes import *
-from app.models import *
 
 def clear_data():
     with app.app_context():
@@ -23,6 +19,8 @@ def run():
     scheduler = BackgroundScheduler()
     scheduler.add_job(clear_data, trigger='interval', minutes=15)
     scheduler.start()
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
 
 if __name__ == '__main__':

@@ -1,21 +1,15 @@
 from flask import Flask
-from flask_login import LoginManager
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-
-db = SQLAlchemy()
-
-login = LoginManager()
+from app.models import db, login
+from app.routes import site
 
 def create_app():
     app = Flask(__name__)
-    migrate = Migrate(app, db)
 
     from config import Config
-
     app.config.from_object(Config)
     db.init_app(app)
-
+    migrate = Migrate(app, db)
     login.init_app(app)
     login.login_view = 'login'
 
@@ -25,6 +19,7 @@ def create_app():
     from app.api.endpoints.users import UserNS
     from app.api.endpoints.register import RegisterNS
 
+    app.register_blueprint(site)
     app.register_blueprint(blueprint)
 
     limiter.init_app(app)
