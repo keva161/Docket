@@ -1,9 +1,8 @@
-from app import db
+from app.models import db, User, Todo
 from flask_restplus import Resource, Namespace
-from app.models import User, Todo
+from flask import jsonify, request
 from app.api.models import UserModel
 from app.api.auth import token_required
-from flask import jsonify, request
 
 UserNS = Namespace('Users', description='User related operations')
 

@@ -11,3 +11,4 @@
 /migrations/README
 /migrations/script.py.mako
 /.idea/vcs.xml
+/migrations/

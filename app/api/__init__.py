@@ -14,5 +14,3 @@ api = Api(blueprint, doc='/documentation', version='1.0', title='Docket API',
                       'First of all, begin by registering a new user via the registration form in the web interface.\n'
                       'Or via a `POST` request to the `/Register/` end point', decorators=[limiter.limit("50/day", error_message="API request limit has been reached (50 per day)")])
 
-
-
