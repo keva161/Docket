@@ -16,13 +16,13 @@ def index():
 @site.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('todo'))
+        return redirect(url_for('Docket.todo'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
-            return redirect(url_for('login'))
+            return redirect(url_for('Docket.login'))
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
@@ -35,14 +35,14 @@ def login():
 def logout():
     if current_user.is_authenticated:
         logout_user()
-        return redirect(url_for('index'))
-    return redirect(url_for('index'))
+        return redirect(url_for('Docket.index'))
+    return redirect(url_for('Docket.index'))
 
 
 @site.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('Docket.index'))
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(api_token=str(uuid.uuid4()), username=form.username.data, email=form.email.data)
@@ -50,7 +50,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now registered')
-        return redirect(url_for('login'))
+        return redirect(url_for('Docket.login'))
     return render_template('register.html', form=form)
 
 
@@ -60,7 +60,7 @@ def todo():
         form = TodoForm()
         todos = current_user.todos.order_by(Todo.timestamp.desc()).all()
         return render_template('todo.html', form=form, todos=todos)
-    return redirect(url_for('index'))
+    return redirect(url_for('Docket.index'))
 
 
 
@@ -88,4 +88,4 @@ def delete():
 def profile():
     if current_user.is_authenticated:
         return render_template('profile.html', User=current_user)
-    return redirect(url_for('index'))
+    return redirect(url_for('Docket.index'))
