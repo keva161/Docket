@@ -15,7 +15,7 @@ Note: Your specific steps may differ depending on your systems operating system.
 5. Type: `pipenv install` to install the required dependencies.
 6. Create the database required by typing `flask db init`, `flask db migrate` & `flask db upgrade`.
 7. Type `python manage.py run` to start the server.
-8. Navigate to `127.0.0.1:5000` in you browser to find the application running.
+8. Navigate to `127.0.0.1:5000` in your browser to find the application running.
 
 ## Example API Tests
 
