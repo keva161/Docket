@@ -19,6 +19,8 @@ def run():
     scheduler = BackgroundScheduler()
     scheduler.add_job(clear_data, trigger='interval', minutes=15)
     scheduler.start()
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
 
 if __name__ == '__main__':
