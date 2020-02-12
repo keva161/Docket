@@ -16,7 +16,7 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()], render_kw={"placeholder": "Email"})
     password = PasswordField('Password', validators=[DataRequired()], render_kw={"placeholder": "Password"})
     password2 = PasswordField(
-        'Repeat Password', validators=[DataRequired(), EqualTo('password')], render_kw={"placeholder": "Repeat Your Password"})
+        'Repeat Password', validators=[DataRequired(), EqualTo('password')], render_kw={"placeholder": "Repeat   Password"})
     submit = SubmitField('Register')
 
     def validate_username(self, username):
