@@ -1,6 +1,6 @@
+from flask import request
 from functools import wraps
 from app.models import User
-from flask import request
 
 
 def token_required(f):

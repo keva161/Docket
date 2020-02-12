@@ -1,6 +1,5 @@
-from app import db
 from flask_restplus import Resource, Namespace
-from app.models import User, Todo
+from app.models import db, User, Todo
 from app.api.models import TodoModel
 from app.api.auth import token_required
 from flask import jsonify, request

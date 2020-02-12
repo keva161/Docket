@@ -1,6 +1,5 @@
-from app import db
 from flask_restplus import Resource, Namespace
-from app.models import User
+from app.models import db, User
 from app.api.models import UserModel
 from flask import jsonify, request, make_response
 import uuid
