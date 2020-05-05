@@ -13,7 +13,7 @@ def clear_data():
         db.session.query(Todo).delete()
         db.session.commit()
         print("Deleted table rows!")
-
+        
 @manager.command
 def run():
     scheduler = BackgroundScheduler()
